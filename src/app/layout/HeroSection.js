@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 
 export const HeroSection = () => {
   return (
     <section className="hero-section">
-      Actualizado cada{" "}
-      <span className="hero-section__timing-primary">10 segundos</span>
+      Updated every
+      <span className="hero-section__timing-primary"> 10 seconds</span>
     </section>
   );
 };

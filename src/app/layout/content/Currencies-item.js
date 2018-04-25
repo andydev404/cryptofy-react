@@ -1,5 +1,6 @@
 import React from 'react';
 import Palette from 'react-palette';
+import PropTypes from 'prop-types';
 
 export const CurrenciesItem = ({ currency, type }) => {
   return (
@@ -59,4 +60,9 @@ export const CurrenciesItem = ({ currency, type }) => {
       </div>
     </article>
   );
+};
+
+CurrenciesItem.propTypes = {
+  currency: PropTypes.object.isRequired,
+  type: PropTypes.string.isRequired
 };

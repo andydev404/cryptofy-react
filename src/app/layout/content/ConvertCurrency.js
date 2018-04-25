@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export const ConvertCurrency = ({ convert }) => {
   return (
@@ -16,4 +17,8 @@ export const ConvertCurrency = ({ convert }) => {
       </li>
     </ul>
   );
+};
+
+ConvertCurrency.propTypes = {
+  convert: PropTypes.func.isRequired
 };
