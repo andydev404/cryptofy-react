@@ -1,0 +1,190 @@
+@import url(../node_modules/bootstrap/dist/css/bootstrap-grid.min.css);
+@import url("https://fonts.googleapis.com/css?family=Nunito:400,700|Open+Sans:400,800");
+/* == Colors == */
+/* == Shadow == */
+/* == Fonts == */
+/* == Mixins == */
+/* == Reset == */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0; }
+
+html {
+  font-size: 62.5%; }
+
+body {
+  color: #3d465e;
+  font-family: "Nunito", sans-serif;
+  font-size: 1.6rem;
+  background: #f2f6f8; }
+
+.text-right {
+  text-align: right; }
+
+.text-center {
+  text-align: center; }
+
+.currency-up {
+  color: #4caf50; }
+
+.currency-down {
+  color: #f44336; }
+
+/* == Header == */
+.header {
+  background: #fff;
+  padding: 1.5rem 0; }
+  .header__logo {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #7d44fc; }
+  .header__icon {
+    font-size: 2.3rem;
+    margin-left: 2.5rem;
+    color: #3d465e; }
+    .header__icon:hover {
+      color: #7d44fc; }
+    .header__icon:first-child {
+      margin-left: 0; }
+
+/* == Hero Section == */
+.hero-section {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 800;
+  font-size: 3.6rem;
+  text-align: center;
+  background: linear-gradient(to right bottom, #996cfd, #7d44fc);
+  color: #fff;
+  padding: 6rem 1rem; }
+  .hero-section__timing-primary {
+    color: #552dad; }
+
+/* == Progress Bar == */
+.main-section {
+  position: relative; }
+
+.progress-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #1ae6a4;
+  height: 0.3rem;
+  transition: width 0.2s; }
+  .progress-bar::after {
+    content: '';
+    background: #1ae6a4;
+    border-top-right-radius: 1rem;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 1rem;
+    height: 1rem; }
+
+/* == Currency convert == */
+.currency-convert {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  list-style: none;
+  margin-bottom: 7rem;
+  padding-top: 4rem; }
+  .currency-convert__item {
+    background: #e1ebef;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    color: #7582a5;
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: 0.3rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 1.5rem 2.5rem;
+    margin-left: 10rem;
+    transition: all 0.2s; }
+    .currency-convert__item:hover {
+      margin-top: -0.5rem;
+      margin-bottom: 0.5rem;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23); }
+    .currency-convert__item:first-child {
+      margin-left: 0; }
+    .currency-convert__item--active {
+      background: linear-gradient(to right bottom, #996cfd, #7d44fc);
+      color: #fff; }
+  .currency-convert__icon {
+    font-size: 3.5rem;
+    color: #552dad;
+    margin-right: 1rem; }
+
+/* == Currencies == */
+.currencies__item {
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.2s;
+  position: relative;
+  margin-bottom: 3rem; }
+  .currencies__item:hover {
+    margin-top: -0.5rem;
+    margin-bottom: 0.5rem;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23); }
+  .currencies__item .currency-thumbnail-content {
+    border-top-left-radius: 0.4rem;
+    border-top-right-radius: 0.4rem;
+    text-align: center;
+    padding-top: 2rem;
+    padding-bottom: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%); }
+    .currencies__item .currency-thumbnail-content__img {
+      width: 100%;
+      max-width: 8rem; }
+
+.currencies__price {
+  color: #7d44fc;
+  text-align: center; }
+
+.currencies__short-name {
+  font-size: 2rem;
+  color: #fff;
+  background: rgba(125, 68, 252, 0.9);
+  border-radius: 2px;
+  padding: 0.5rem 2rem;
+  position: absolute;
+  right: 1rem;
+  top: 8rem; }
+
+.currencies__name {
+  text-align: center; }
+
+.currencies-info {
+  padding: 2.5rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; }
+  .currencies-info__change-24h {
+    color: #4caf50;
+    font-size: 2rem; }
+    .currencies-info__change-24h-title {
+      color: #3d465e;
+      font-weight: 700;
+      font-size: 1.5rem; }
+
+.currencies-price-btc {
+  text-align: center;
+  color: #fff;
+  padding: 1rem;
+  font-size: 1.7rem;
+  background: linear-gradient(to right bottom, #996cfd, #7d44fc);
+  border-bottom-left-radius: 0.4rem;
+  border-bottom-right-radius: 0.4rem; }
