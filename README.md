@@ -6,4 +6,6 @@
 
 ## Credits
 
-> [Coinmarketcap](https://coinmarketcap.com/api/)
+[Coinmarketcap](https://coinmarketcap.com/api/)
+
+[react-palette](https://github.com/leonardokl/react-palette)
