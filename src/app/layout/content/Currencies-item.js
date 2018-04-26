@@ -2,6 +2,16 @@ import React from 'react';
 import Palette from 'react-palette';
 import PropTypes from 'prop-types';
 
+const setTwoDecimal = price => {
+  let defaultPrice = Number(price);
+  return defaultPrice >= 1
+    ? defaultPrice
+        .toFixed(2)
+        .toString()
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+    : price;
+};
+
 export const CurrenciesItem = ({ currency, type }) => {
   return (
     <article className="col-md-6 col-lg-3">
@@ -14,9 +24,7 @@ export const CurrenciesItem = ({ currency, type }) => {
           {palette => (
             <div
               className="currency-thumbnail-content"
-              style={{
-                background: palette.vibrant
-              }}
+              style={{ background: palette.vibrant }}
             >
               <img
                 className="currency-thumbnail-content__img"
@@ -35,8 +43,8 @@ export const CurrenciesItem = ({ currency, type }) => {
         <h3 className="currencies__name">{currency.name}</h3>
         <h3 className="currencies__price">
           {type === 'usd'
-            ? `${type.toUpperCase()} $${currency.price_usd}`
-            : `${type.toUpperCase()} €${currency.price_eur}`}
+            ? `${type.toUpperCase()} $${setTwoDecimal(currency.price_usd)}`
+            : `${type.toUpperCase()} €${setTwoDecimal(currency.price_eur)}`}
         </h3>
         <div className="currencies-info">
           <div className="currencies-info__change-24h">
