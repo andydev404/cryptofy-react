@@ -8,7 +8,7 @@ export const Header = () => {
           <div className="col header__logo">CryptoFy</div>
           <div className="col text-right">
             <a
-              href="https://twitter.com/andydev01"
+              href="https://twitter.com/andydev404"
               rel="noopener noreferrer"
               target="_blank"
               className="header__icon"
