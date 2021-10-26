@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { CurrenciesItem } from './Currencies-item';
 import { ConvertCurrency } from './ConvertCurrency';
 import { ProgressBar } from './ProgressBar';
+import axios from 'axios';
 
 export class Currencies extends Component {
   state = {
@@ -35,10 +36,9 @@ export class Currencies extends Component {
   }
 
   fetchCurrencies = () => {
-    fetch(
-      `https://api.coinmarketcap.com/v1/ticker/?convert=${this.state.currencyType.toUpperCase()}&limit=40`
-    )
-      .then(data => data.json())
+    let apiKey = 'cbc51af2-adfc-46f2-8bc3-1a80f5489940';
+    axios.get(`https://api.coinmarketcap.com/v1/cryptocurrency/listings/latest?CMC_PRO_API_KEY=${apiKey}&start=1&limit=5&convert=${this.state.currencyType.toUpperCase()}`)
+    .then(data => data.json())
       .then(data => {
         this.setState({ cryptoCurrencies: data });
       });
@@ -49,9 +49,8 @@ export class Currencies extends Component {
       .querySelectorAll('.currency-convert li')
       .forEach(node => node.classList.remove('currency-convert__item--active'));
     e.currentTarget.classList.add('currency-convert__item--active');
-    fetch(
-      `https://api.coinmarketcap.com/v1/ticker/?convert=${currency.toUpperCase()}&limit=40`
-    )
+
+    axios.get(`https://api.coinmarketcap.com/v1/cryptocurrency/listings/latest?limit=5&convert=${currency.toUpperCase()}&CMC_PRO_API_KEY=cbc51af2-adfc-46f2-8bc3-1a80f5489940`)
       .then(data => data.json())
       .then(data => {
         this.setState({ cryptoCurrencies: data, currencyType: currency });
