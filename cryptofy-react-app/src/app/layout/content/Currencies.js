@@ -36,11 +36,9 @@ export class Currencies extends Component {
   }
 
   fetchCurrencies = () => {
-    let apiKey = 'cbc51af2-adfc-46f2-8bc3-1a80f5489940';
-    axios.get(`https://api.coinmarketcap.com/v1/cryptocurrency/listings/latest?CMC_PRO_API_KEY=${apiKey}&start=1&limit=5&convert=${this.state.currencyType.toUpperCase()}`)
-    .then(data => data.json())
-      .then(data => {
-        this.setState({ cryptoCurrencies: data });
+    axios.get(`/api/${this.state.currencyType}`)
+      .then((data) => {
+        this.setState({ cryptoCurrencies: data.data.data });
       });
   };
 
@@ -50,10 +48,9 @@ export class Currencies extends Component {
       .forEach(node => node.classList.remove('currency-convert__item--active'));
     e.currentTarget.classList.add('currency-convert__item--active');
 
-    axios.get(`https://api.coinmarketcap.com/v1/cryptocurrency/listings/latest?limit=5&convert=${currency.toUpperCase()}&CMC_PRO_API_KEY=cbc51af2-adfc-46f2-8bc3-1a80f5489940`)
-      .then(data => data.json())
-      .then(data => {
-        this.setState({ cryptoCurrencies: data, currencyType: currency });
+    axios.get(`/api/${currency}`)
+      .then((data) => {
+        this.setState({ cryptoCurrencies: data.data.data, currencyType: currency });
       });
   };
 
