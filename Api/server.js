@@ -1,4 +1,5 @@
 const express = require('express');
+const config = require('./config.json');
 const path = require('path');
 const app = express(),
             bodyParser = require("body-parser");
@@ -6,7 +7,7 @@ const app = express(),
 const axios = require('axios')
 
 const data = [];
-const coinMarketCapApi = 'cbc51af2-adfc-46f2-8bc3-1a80f5489940';
+//const coinMarketCapApi = config.coinMarketCapApi;
 
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '../cryptofy-react/build')));
@@ -21,13 +22,13 @@ app.use(function (req, res, next) {
 
 const getCrypto = (currency) => {
     return axios.get('https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start=1&limit=40&convert='+currency.toUpperCase(),{
-            headers: {'X-CMC_PRO_API_KEY':coinMarketCapApi}
+            headers: {'X-CMC_PRO_API_KEY':config.coinMarketCapApi}
         }).then(data => data);
 }
 
 app.get('/api/:currency', (req, res) => {
     axios.get('https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start=1&limit=40&convert='+req.params.currency.toUpperCase(),{
-        headers: {'X-CMC_PRO_API_KEY':coinMarketCapApi}
+        headers: {'X-CMC_PRO_API_KEY':config.coinMarketCapApi}
     }).then((response) => {
         res.json(response.data);
     }).catch((error) => {
