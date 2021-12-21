@@ -4,12 +4,10 @@ import PropTypes from 'prop-types';
 
 const setTwoDecimal = price => {
   let defaultPrice = Number(price);
-  return defaultPrice >= 1
-    ? defaultPrice
+  return defaultPrice
         .toFixed(2)
         .toString()
-        .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-    : price;
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 };
 
 export const CurrenciesItem = ({ currency, type }) => {
@@ -43,28 +41,38 @@ export const CurrenciesItem = ({ currency, type }) => {
         <h3 className="currencies__name">{currency.name}</h3>
         <h3 className="currencies__price">
           {type === 'usd'
-            ? `${type.toUpperCase()} $${setTwoDecimal(currency.price_usd)}`
-            : `${type.toUpperCase()} €${setTwoDecimal(currency.price_eur)}`}
+            ? `${type.toUpperCase()} $${setTwoDecimal(currency.quote.USD.price)}`
+            : `${type.toUpperCase()} €${setTwoDecimal(currency.quote.EUR.price)}`}
         </h3>
         <div className="currencies-info">
           <div className="currencies-info__change-24h">
             <p className="currencies-info__change-24h-title">Change (24h)</p>
-            {currency.percent_change_24h.indexOf('-') >= 0 ? (
-              <p className="currency-down">{currency.percent_change_24h}%</p>
+            {type === 'usd' ? 
+            (currency.quote.USD.percent_change_24h < 0 ? (
+              <p className="currency-down">{setTwoDecimal(currency.quote.USD.percent_change_24h)}%</p>
             ) : (
-              <p className="currency-up">{currency.percent_change_24h}%</p>
-            )}
+              <p className="currency-up">{setTwoDecimal(currency.quote.USD.percent_change_24h)}%</p>
+            )) : (currency.quote.EUR.percent_change_24h < 0 ? (
+              <p className="currency-down">{setTwoDecimal(currency.quote.EUR.percent_change_24h)}%</p>
+            ) : (
+              <p className="currency-up">{setTwoDecimal(currency.quote.EUR.percent_change_24h)}%</p>
+            ))}
           </div>
           <div className="currencies-info__change-24h">
             <p className="currencies-info__change-24h-title">Change (7d)</p>
-            {currency.percent_change_7d.indexOf('-') >= 0 ? (
-              <p className="currency-down">{currency.percent_change_7d}%</p>
+            {type === 'usd' ? 
+            (currency.quote.USD.percent_change_7d < 0 ? (
+              <p className="currency-down">{setTwoDecimal(currency.quote.USD.percent_change_7d)}%</p>
             ) : (
-              <p className="currency-up">{currency.percent_change_7d}%</p>
-            )}
+              <p className="currency-up">{setTwoDecimal(currency.quote.USD.percent_change_7d)}%</p>
+            )) : (currency.quote.EUR.percent_change_7d < 0 ? (
+              <p className="currency-down">{setTwoDecimal(currency.quote.EUR.percent_change_7d)}%</p>
+            ) : (
+              <p className="currency-up">{setTwoDecimal(currency.quote.EUR.percent_change_7d)}%</p>
+            ))}
           </div>
         </div>
-        <div className="currencies-price-btc">{currency.price_btc} btc</div>
+        <div className="currencies-price-btc">Actualizado: {currency.last_updated.substring(0,10)}</div>
       </div>
     </article>
   );
