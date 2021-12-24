@@ -2,7 +2,13 @@
   "name": "cryptofy",
   "version": "0.1.0",
   "private": true,
+  "proxy": {
+    "/api/*": {
+      "target": "http://localhost:3080/"
+    }
+  },
   "dependencies": {
+    "axios": "^0.24.0",
     "bootstrap": "^4.1.0",
     "node-sass-chokidar": "^1.2.2",
     "npm-run-all": "^4.1.2",

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { CurrenciesItem } from './Currencies-item';
 import { ConvertCurrency } from './ConvertCurrency';
 import { ProgressBar } from './ProgressBar';
+import axios from 'axios';
 
 export class Currencies extends Component {
   state = {
@@ -35,12 +36,9 @@ export class Currencies extends Component {
   }
 
   fetchCurrencies = () => {
-    fetch(
-      `https://api.coinmarketcap.com/v1/ticker/?convert=${this.state.currencyType.toUpperCase()}&limit=40`
-    )
-      .then(data => data.json())
-      .then(data => {
-        this.setState({ cryptoCurrencies: data });
+    axios.get(`/api/${this.state.currencyType}`)
+      .then((data) => {
+        this.setState({ cryptoCurrencies: data.data.data });
       });
   };
 
@@ -49,12 +47,10 @@ export class Currencies extends Component {
       .querySelectorAll('.currency-convert li')
       .forEach(node => node.classList.remove('currency-convert__item--active'));
     e.currentTarget.classList.add('currency-convert__item--active');
-    fetch(
-      `https://api.coinmarketcap.com/v1/ticker/?convert=${currency.toUpperCase()}&limit=40`
-    )
-      .then(data => data.json())
-      .then(data => {
-        this.setState({ cryptoCurrencies: data, currencyType: currency });
+
+    axios.get(`/api/${currency}`)
+      .then((data) => {
+        this.setState({ cryptoCurrencies: data.data.data, currencyType: currency });
       });
   };
 
